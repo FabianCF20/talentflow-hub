@@ -10,33 +10,92 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuditoriaRouteImport } from './routes/auditoria'
+import { Route as ConfiguracionRouteImport } from './routes/configuracion'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as MaestrosRouteImport } from './routes/maestros'
+import { Route as UsuariosRouteImport } from './routes/usuarios'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuditoriaRoute = AuditoriaRouteImport.update({
+  id: '/auditoria',
+  path: '/auditoria',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfiguracionRoute = ConfiguracionRouteImport.update({
+  id: '/configuracion',
+  path: '/configuracion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MaestrosRoute = MaestrosRouteImport.update({
+  id: '/maestros',
+  path: '/maestros',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UsuariosRoute = UsuariosRouteImport.update({
+  id: '/usuarios',
+  path: '/usuarios',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auditoria': typeof AuditoriaRoute
+  '/configuracion': typeof ConfiguracionRoute
+  '/login': typeof LoginRoute
+  '/maestros': typeof MaestrosRoute
+  '/usuarios': typeof UsuariosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auditoria': typeof AuditoriaRoute
+  '/configuracion': typeof ConfiguracionRoute
+  '/login': typeof LoginRoute
+  '/maestros': typeof MaestrosRoute
+  '/usuarios': typeof UsuariosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auditoria': typeof AuditoriaRoute
+  '/configuracion': typeof ConfiguracionRoute
+  '/login': typeof LoginRoute
+  '/maestros': typeof MaestrosRoute
+  '/usuarios': typeof UsuariosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/auditoria' | '/configuracion' | '/login' | '/maestros' | '/usuarios'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    '/' | '/auditoria' | '/configuracion' | '/login' | '/maestros' | '/usuarios'
+  id:
+    | '__root__'
+    | '/'
+    | '/auditoria'
+    | '/configuracion'
+    | '/login'
+    | '/maestros'
+    | '/usuarios'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuditoriaRoute: typeof AuditoriaRoute
+  ConfiguracionRoute: typeof ConfiguracionRoute
+  LoginRoute: typeof LoginRoute
+  MaestrosRoute: typeof MaestrosRoute
+  UsuariosRoute: typeof UsuariosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +107,52 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auditoria': {
+      id: '/auditoria'
+      path: '/auditoria'
+      fullPath: '/auditoria'
+      preLoaderRoute: typeof AuditoriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/configuracion': {
+      id: '/configuracion'
+      path: '/configuracion'
+      fullPath: '/configuracion'
+      preLoaderRoute: typeof ConfiguracionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/maestros': {
+      id: '/maestros'
+      path: '/maestros'
+      fullPath: '/maestros'
+      preLoaderRoute: typeof MaestrosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/usuarios': {
+      id: '/usuarios'
+      path: '/usuarios'
+      fullPath: '/usuarios'
+      preLoaderRoute: typeof UsuariosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuditoriaRoute: AuditoriaRoute,
+  ConfiguracionRoute: ConfiguracionRoute,
+  LoginRoute: LoginRoute,
+  MaestrosRoute: MaestrosRoute,
+  UsuariosRoute: UsuariosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
