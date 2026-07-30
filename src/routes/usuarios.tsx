@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Fragment } from "react";
 import { Check, Minus, UserPlus } from "lucide-react";
 import { AppShell } from "@/components/layout/AppShell";
 import { PageHeader } from "@/components/common/PageHeader";
@@ -78,8 +79,8 @@ function Usuarios() {
               </thead>
               <tbody>
                 {modulos.map((modulo) => (
-                  <>
-                    <tr key={modulo} className="border-b border-border bg-primary-soft/50">
+                  <Fragment key={modulo}>
+                    <tr className="border-b border-border bg-primary-soft/50">
                       <td colSpan={PERMISSION_ACTIONS.length + 1} className="px-4 py-2 text-xs font-semibold uppercase tracking-wide text-primary">
                         {modulo}
                       </td>
@@ -100,7 +101,7 @@ function Usuarios() {
                         ))}
                       </tr>
                     ))}
-                  </>
+                  </Fragment>
                 ))}
               </tbody>
             </table>
