@@ -39,6 +39,13 @@ export const NAV_GROUPS: NavGroup[] = [
     ],
   },
   {
+    label: "Organización",
+    items: [
+      { label: "Estructura organizacional", to: "/organizacion", icon: Building2, modulo: "organizacion" },
+      { label: "Organigrama", to: "/organigrama", icon: Network, modulo: "organigrama" },
+    ],
+  },
+  {
     label: "Talento Humano",
     items: [
       { label: "Empleados", icon: Users, modulo: "empleados", proximamente: true },
