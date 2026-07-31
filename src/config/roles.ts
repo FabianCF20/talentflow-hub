@@ -8,6 +8,7 @@ export const ROLES: Role[] = [
   { key: "supervisor", nombre: "Supervisor", descripcion: "Control operativo del equipo a cargo", nivel: 5 },
   { key: "talento_humano", nombre: "Talento Humano", descripcion: "Administración de personal y documentación", nivel: 3 },
   { key: "nomina", nombre: "Nómina", descripcion: "Liquidación, novedades y reportes de nómina", nivel: 3 },
+  { key: "contabilidad", nombre: "Contabilidad", descripcion: "Costos, causación y control presupuestal", nivel: 3 },
   { key: "sst", nombre: "SST", descripcion: "Seguridad y salud en el trabajo", nivel: 3 },
   { key: "empleado", nombre: "Empleado", descripcion: "Autogestión de su información y solicitudes", nivel: 9 },
 ];
