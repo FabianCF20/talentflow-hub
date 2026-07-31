@@ -13,6 +13,7 @@ import {
   Settings,
   Building2,
   History,
+  Network,
   type LucideIcon,
 } from "lucide-react";
 
