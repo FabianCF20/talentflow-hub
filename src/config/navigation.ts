@@ -13,6 +13,7 @@ import {
   Settings,
   Building2,
   History,
+  Network,
   type LucideIcon,
 } from "lucide-react";
 
@@ -36,6 +37,13 @@ export const NAV_GROUPS: NavGroup[] = [
     items: [
       { label: "Dashboard", to: "/", icon: LayoutDashboard, modulo: "dashboard" },
       { label: "Bandeja de solicitudes", icon: Inbox, modulo: "solicitudes", proximamente: true },
+    ],
+  },
+  {
+    label: "Organización",
+    items: [
+      { label: "Estructura organizacional", to: "/organizacion", icon: Building2, modulo: "organizacion" },
+      { label: "Organigrama", to: "/organigrama", icon: Network, modulo: "organigrama" },
     ],
   },
   {

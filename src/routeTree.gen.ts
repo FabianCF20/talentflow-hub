@@ -14,6 +14,8 @@ import { Route as AuditoriaRouteImport } from './routes/auditoria'
 import { Route as ConfiguracionRouteImport } from './routes/configuracion'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MaestrosRouteImport } from './routes/maestros'
+import { Route as OrganigramaRouteImport } from './routes/organigrama'
+import { Route as OrganizacionRouteImport } from './routes/organizacion'
 import { Route as UsuariosRouteImport } from './routes/usuarios'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,6 +43,16 @@ const MaestrosRoute = MaestrosRouteImport.update({
   path: '/maestros',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrganigramaRoute = OrganigramaRouteImport.update({
+  id: '/organigrama',
+  path: '/organigrama',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrganizacionRoute = OrganizacionRouteImport.update({
+  id: '/organizacion',
+  path: '/organizacion',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UsuariosRoute = UsuariosRouteImport.update({
   id: '/usuarios',
   path: '/usuarios',
@@ -53,6 +65,8 @@ export interface FileRoutesByFullPath {
   '/configuracion': typeof ConfiguracionRoute
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
+  '/organigrama': typeof OrganigramaRoute
+  '/organizacion': typeof OrganizacionRoute
   '/usuarios': typeof UsuariosRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +75,8 @@ export interface FileRoutesByTo {
   '/configuracion': typeof ConfiguracionRoute
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
+  '/organigrama': typeof OrganigramaRoute
+  '/organizacion': typeof OrganizacionRoute
   '/usuarios': typeof UsuariosRoute
 }
 export interface FileRoutesById {
@@ -70,15 +86,31 @@ export interface FileRoutesById {
   '/configuracion': typeof ConfiguracionRoute
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
+  '/organigrama': typeof OrganigramaRoute
+  '/organizacion': typeof OrganizacionRoute
   '/usuarios': typeof UsuariosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/auditoria' | '/configuracion' | '/login' | '/maestros' | '/usuarios'
+    | '/'
+    | '/auditoria'
+    | '/configuracion'
+    | '/login'
+    | '/maestros'
+    | '/organigrama'
+    | '/organizacion'
+    | '/usuarios'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/auditoria' | '/configuracion' | '/login' | '/maestros' | '/usuarios'
+    | '/'
+    | '/auditoria'
+    | '/configuracion'
+    | '/login'
+    | '/maestros'
+    | '/organigrama'
+    | '/organizacion'
+    | '/usuarios'
   id:
     | '__root__'
     | '/'
@@ -86,6 +118,8 @@ export interface FileRouteTypes {
     | '/configuracion'
     | '/login'
     | '/maestros'
+    | '/organigrama'
+    | '/organizacion'
     | '/usuarios'
   fileRoutesById: FileRoutesById
 }
@@ -95,6 +129,8 @@ export interface RootRouteChildren {
   ConfiguracionRoute: typeof ConfiguracionRoute
   LoginRoute: typeof LoginRoute
   MaestrosRoute: typeof MaestrosRoute
+  OrganigramaRoute: typeof OrganigramaRoute
+  OrganizacionRoute: typeof OrganizacionRoute
   UsuariosRoute: typeof UsuariosRoute
 }
 
@@ -135,6 +171,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MaestrosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/organigrama': {
+      id: '/organigrama'
+      path: '/organigrama'
+      fullPath: '/organigrama'
+      preLoaderRoute: typeof OrganigramaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/organizacion': {
+      id: '/organizacion'
+      path: '/organizacion'
+      fullPath: '/organizacion'
+      preLoaderRoute: typeof OrganizacionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/usuarios': {
       id: '/usuarios'
       path: '/usuarios'
@@ -151,6 +201,8 @@ const rootRouteChildren: RootRouteChildren = {
   ConfiguracionRoute: ConfiguracionRoute,
   LoginRoute: LoginRoute,
   MaestrosRoute: MaestrosRoute,
+  OrganigramaRoute: OrganigramaRoute,
+  OrganizacionRoute: OrganizacionRoute,
   UsuariosRoute: UsuariosRoute,
 }
 export const routeTree = rootRouteImport
