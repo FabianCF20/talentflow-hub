@@ -46,6 +46,7 @@ export type RoleKey =
   | "supervisor"
   | "talento_humano"
   | "nomina"
+  | "contabilidad"
   | "sst"
   | "empleado";
 
