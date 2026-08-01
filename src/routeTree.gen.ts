@@ -18,6 +18,7 @@ import { Route as MaestrosRouteImport } from './routes/maestros'
 import { Route as OrganigramaRouteImport } from './routes/organigrama'
 import { Route as OrganizacionRouteImport } from './routes/organizacion'
 import { Route as UsuariosRouteImport } from './routes/usuarios'
+import { Route as EmpleadosIdRouteImport } from './routes/empleados.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -64,40 +65,48 @@ const UsuariosRoute = UsuariosRouteImport.update({
   path: '/usuarios',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EmpleadosIdRoute = EmpleadosIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => EmpleadosRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auditoria': typeof AuditoriaRoute
   '/configuracion': typeof ConfiguracionRoute
-  '/empleados': typeof EmpleadosRoute
+  '/empleados': typeof EmpleadosRouteWithChildren
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
   '/organigrama': typeof OrganigramaRoute
   '/organizacion': typeof OrganizacionRoute
   '/usuarios': typeof UsuariosRoute
+  '/empleados/$id': typeof EmpleadosIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auditoria': typeof AuditoriaRoute
   '/configuracion': typeof ConfiguracionRoute
-  '/empleados': typeof EmpleadosRoute
+  '/empleados': typeof EmpleadosRouteWithChildren
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
   '/organigrama': typeof OrganigramaRoute
   '/organizacion': typeof OrganizacionRoute
   '/usuarios': typeof UsuariosRoute
+  '/empleados/$id': typeof EmpleadosIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auditoria': typeof AuditoriaRoute
   '/configuracion': typeof ConfiguracionRoute
-  '/empleados': typeof EmpleadosRoute
+  '/empleados': typeof EmpleadosRouteWithChildren
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
   '/organigrama': typeof OrganigramaRoute
   '/organizacion': typeof OrganizacionRoute
   '/usuarios': typeof UsuariosRoute
+  '/empleados/$id': typeof EmpleadosIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,6 +120,7 @@ export interface FileRouteTypes {
     | '/organigrama'
     | '/organizacion'
     | '/usuarios'
+    | '/empleados/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/organigrama'
     | '/organizacion'
     | '/usuarios'
+    | '/empleados/$id'
   id:
     | '__root__'
     | '/'
@@ -133,13 +144,14 @@ export interface FileRouteTypes {
     | '/organigrama'
     | '/organizacion'
     | '/usuarios'
+    | '/empleados/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuditoriaRoute: typeof AuditoriaRoute
   ConfiguracionRoute: typeof ConfiguracionRoute
-  EmpleadosRoute: typeof EmpleadosRoute
+  EmpleadosRoute: typeof EmpleadosRouteWithChildren
   LoginRoute: typeof LoginRoute
   MaestrosRoute: typeof MaestrosRoute
   OrganigramaRoute: typeof OrganigramaRoute
@@ -212,14 +224,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UsuariosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/empleados/$id': {
+      id: '/empleados/$id'
+      path: '/$id'
+      fullPath: '/empleados/$id'
+      preLoaderRoute: typeof EmpleadosIdRouteImport
+      parentRoute: typeof EmpleadosRoute
+    }
   }
 }
+
+interface EmpleadosRouteChildren {
+  EmpleadosIdRoute: typeof EmpleadosIdRoute
+}
+
+const EmpleadosRouteChildren: EmpleadosRouteChildren = {
+  EmpleadosIdRoute: EmpleadosIdRoute,
+}
+
+const EmpleadosRouteWithChildren = EmpleadosRoute._addFileChildren(
+  EmpleadosRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuditoriaRoute: AuditoriaRoute,
   ConfiguracionRoute: ConfiguracionRoute,
-  EmpleadosRoute: EmpleadosRoute,
+  EmpleadosRoute: EmpleadosRouteWithChildren,
   LoginRoute: LoginRoute,
   MaestrosRoute: MaestrosRoute,
   OrganigramaRoute: OrganigramaRoute,

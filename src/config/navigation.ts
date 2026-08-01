@@ -49,7 +49,7 @@ export const NAV_GROUPS: NavGroup[] = [
   {
     label: "Talento Humano",
     items: [
-      { label: "Empleados", icon: Users, modulo: "empleados", proximamente: true },
+      { label: "Empleados", to: "/empleados", icon: Users, modulo: "empleados" },
       { label: "Documentación", icon: FileText, modulo: "documentacion", proximamente: true },
       { label: "Evaluaciones", icon: ClipboardCheck, modulo: "evaluaciones", proximamente: true },
       { label: "Gestión disciplinaria", icon: Scale, modulo: "disciplinario", proximamente: true },
