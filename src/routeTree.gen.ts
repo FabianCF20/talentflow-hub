@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuditoriaRouteImport } from './routes/auditoria'
 import { Route as ConfiguracionRouteImport } from './routes/configuracion'
+import { Route as EmpleadosRouteImport } from './routes/empleados'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MaestrosRouteImport } from './routes/maestros'
 import { Route as OrganigramaRouteImport } from './routes/organigrama'
@@ -31,6 +32,11 @@ const AuditoriaRoute = AuditoriaRouteImport.update({
 const ConfiguracionRoute = ConfiguracionRouteImport.update({
   id: '/configuracion',
   path: '/configuracion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmpleadosRoute = EmpleadosRouteImport.update({
+  id: '/empleados',
+  path: '/empleados',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -63,6 +69,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auditoria': typeof AuditoriaRoute
   '/configuracion': typeof ConfiguracionRoute
+  '/empleados': typeof EmpleadosRoute
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
   '/organigrama': typeof OrganigramaRoute
@@ -73,6 +80,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auditoria': typeof AuditoriaRoute
   '/configuracion': typeof ConfiguracionRoute
+  '/empleados': typeof EmpleadosRoute
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
   '/organigrama': typeof OrganigramaRoute
@@ -84,6 +92,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/auditoria': typeof AuditoriaRoute
   '/configuracion': typeof ConfiguracionRoute
+  '/empleados': typeof EmpleadosRoute
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
   '/organigrama': typeof OrganigramaRoute
@@ -96,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auditoria'
     | '/configuracion'
+    | '/empleados'
     | '/login'
     | '/maestros'
     | '/organigrama'
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auditoria'
     | '/configuracion'
+    | '/empleados'
     | '/login'
     | '/maestros'
     | '/organigrama'
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auditoria'
     | '/configuracion'
+    | '/empleados'
     | '/login'
     | '/maestros'
     | '/organigrama'
@@ -127,6 +139,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuditoriaRoute: typeof AuditoriaRoute
   ConfiguracionRoute: typeof ConfiguracionRoute
+  EmpleadosRoute: typeof EmpleadosRoute
   LoginRoute: typeof LoginRoute
   MaestrosRoute: typeof MaestrosRoute
   OrganigramaRoute: typeof OrganigramaRoute
@@ -155,6 +168,13 @@ declare module '@tanstack/react-router' {
       path: '/configuracion'
       fullPath: '/configuracion'
       preLoaderRoute: typeof ConfiguracionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/empleados': {
+      id: '/empleados'
+      path: '/empleados'
+      fullPath: '/empleados'
+      preLoaderRoute: typeof EmpleadosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -199,6 +219,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuditoriaRoute: AuditoriaRoute,
   ConfiguracionRoute: ConfiguracionRoute,
+  EmpleadosRoute: EmpleadosRoute,
   LoginRoute: LoginRoute,
   MaestrosRoute: MaestrosRoute,
   OrganigramaRoute: OrganigramaRoute,
