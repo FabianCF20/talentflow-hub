@@ -12,11 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuditoriaRouteImport } from './routes/auditoria'
 import { Route as ConfiguracionRouteImport } from './routes/configuracion'
+import { Route as EmpleadosRouteImport } from './routes/empleados'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MaestrosRouteImport } from './routes/maestros'
 import { Route as OrganigramaRouteImport } from './routes/organigrama'
 import { Route as OrganizacionRouteImport } from './routes/organizacion'
 import { Route as UsuariosRouteImport } from './routes/usuarios'
+import { Route as EmpleadosIdRouteImport } from './routes/empleados.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -31,6 +33,11 @@ const AuditoriaRoute = AuditoriaRouteImport.update({
 const ConfiguracionRoute = ConfiguracionRouteImport.update({
   id: '/configuracion',
   path: '/configuracion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmpleadosRoute = EmpleadosRouteImport.update({
+  id: '/empleados',
+  path: '/empleados',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -58,37 +65,48 @@ const UsuariosRoute = UsuariosRouteImport.update({
   path: '/usuarios',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EmpleadosIdRoute = EmpleadosIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => EmpleadosRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auditoria': typeof AuditoriaRoute
   '/configuracion': typeof ConfiguracionRoute
+  '/empleados': typeof EmpleadosRouteWithChildren
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
   '/organigrama': typeof OrganigramaRoute
   '/organizacion': typeof OrganizacionRoute
   '/usuarios': typeof UsuariosRoute
+  '/empleados/$id': typeof EmpleadosIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auditoria': typeof AuditoriaRoute
   '/configuracion': typeof ConfiguracionRoute
+  '/empleados': typeof EmpleadosRouteWithChildren
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
   '/organigrama': typeof OrganigramaRoute
   '/organizacion': typeof OrganizacionRoute
   '/usuarios': typeof UsuariosRoute
+  '/empleados/$id': typeof EmpleadosIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auditoria': typeof AuditoriaRoute
   '/configuracion': typeof ConfiguracionRoute
+  '/empleados': typeof EmpleadosRouteWithChildren
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
   '/organigrama': typeof OrganigramaRoute
   '/organizacion': typeof OrganizacionRoute
   '/usuarios': typeof UsuariosRoute
+  '/empleados/$id': typeof EmpleadosIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -96,37 +114,44 @@ export interface FileRouteTypes {
     | '/'
     | '/auditoria'
     | '/configuracion'
+    | '/empleados'
     | '/login'
     | '/maestros'
     | '/organigrama'
     | '/organizacion'
     | '/usuarios'
+    | '/empleados/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auditoria'
     | '/configuracion'
+    | '/empleados'
     | '/login'
     | '/maestros'
     | '/organigrama'
     | '/organizacion'
     | '/usuarios'
+    | '/empleados/$id'
   id:
     | '__root__'
     | '/'
     | '/auditoria'
     | '/configuracion'
+    | '/empleados'
     | '/login'
     | '/maestros'
     | '/organigrama'
     | '/organizacion'
     | '/usuarios'
+    | '/empleados/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuditoriaRoute: typeof AuditoriaRoute
   ConfiguracionRoute: typeof ConfiguracionRoute
+  EmpleadosRoute: typeof EmpleadosRouteWithChildren
   LoginRoute: typeof LoginRoute
   MaestrosRoute: typeof MaestrosRoute
   OrganigramaRoute: typeof OrganigramaRoute
@@ -155,6 +180,13 @@ declare module '@tanstack/react-router' {
       path: '/configuracion'
       fullPath: '/configuracion'
       preLoaderRoute: typeof ConfiguracionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/empleados': {
+      id: '/empleados'
+      path: '/empleados'
+      fullPath: '/empleados'
+      preLoaderRoute: typeof EmpleadosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -192,13 +224,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UsuariosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/empleados/$id': {
+      id: '/empleados/$id'
+      path: '/$id'
+      fullPath: '/empleados/$id'
+      preLoaderRoute: typeof EmpleadosIdRouteImport
+      parentRoute: typeof EmpleadosRoute
+    }
   }
 }
+
+interface EmpleadosRouteChildren {
+  EmpleadosIdRoute: typeof EmpleadosIdRoute
+}
+
+const EmpleadosRouteChildren: EmpleadosRouteChildren = {
+  EmpleadosIdRoute: EmpleadosIdRoute,
+}
+
+const EmpleadosRouteWithChildren = EmpleadosRoute._addFileChildren(
+  EmpleadosRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuditoriaRoute: AuditoriaRoute,
   ConfiguracionRoute: ConfiguracionRoute,
+  EmpleadosRoute: EmpleadosRouteWithChildren,
   LoginRoute: LoginRoute,
   MaestrosRoute: MaestrosRoute,
   OrganigramaRoute: OrganigramaRoute,

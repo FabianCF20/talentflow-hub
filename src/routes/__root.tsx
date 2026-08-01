@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ThemeProvider } from "../lib/theme";
 import { Toaster } from "../components/ui/sonner";
+import { RrhhProvider } from "../store/rrhh";
 
 
 function NotFoundComponent() {
@@ -136,8 +137,10 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
+        <RrhhProvider>
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </RrhhProvider>
         <Toaster />
       </ThemeProvider>
     </QueryClientProvider>
