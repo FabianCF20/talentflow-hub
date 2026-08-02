@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ThemeProvider } from "../lib/theme";
 import { Toaster } from "../components/ui/sonner";
 import { RrhhProvider } from "../store/rrhh";
+import { PortalProvider } from "../store/portal";
 
 
 function NotFoundComponent() {
@@ -138,8 +139,10 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <RrhhProvider>
+          <PortalProvider>
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-          <Outlet />
+            <Outlet />
+          </PortalProvider>
         </RrhhProvider>
         <Toaster />
       </ThemeProvider>
