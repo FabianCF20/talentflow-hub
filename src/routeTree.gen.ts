@@ -17,6 +17,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as MaestrosRouteImport } from './routes/maestros'
 import { Route as OrganigramaRouteImport } from './routes/organigrama'
 import { Route as OrganizacionRouteImport } from './routes/organizacion'
+import { Route as PortalRouteImport } from './routes/portal'
 import { Route as UsuariosRouteImport } from './routes/usuarios'
 import { Route as EmpleadosIdRouteImport } from './routes/empleados.$id'
 
@@ -60,6 +61,11 @@ const OrganizacionRoute = OrganizacionRouteImport.update({
   path: '/organizacion',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PortalRoute = PortalRouteImport.update({
+  id: '/portal',
+  path: '/portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UsuariosRoute = UsuariosRouteImport.update({
   id: '/usuarios',
   path: '/usuarios',
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/maestros': typeof MaestrosRoute
   '/organigrama': typeof OrganigramaRoute
   '/organizacion': typeof OrganizacionRoute
+  '/portal': typeof PortalRoute
   '/usuarios': typeof UsuariosRoute
   '/empleados/$id': typeof EmpleadosIdRoute
 }
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/maestros': typeof MaestrosRoute
   '/organigrama': typeof OrganigramaRoute
   '/organizacion': typeof OrganizacionRoute
+  '/portal': typeof PortalRoute
   '/usuarios': typeof UsuariosRoute
   '/empleados/$id': typeof EmpleadosIdRoute
 }
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/maestros': typeof MaestrosRoute
   '/organigrama': typeof OrganigramaRoute
   '/organizacion': typeof OrganizacionRoute
+  '/portal': typeof PortalRoute
   '/usuarios': typeof UsuariosRoute
   '/empleados/$id': typeof EmpleadosIdRoute
 }
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/maestros'
     | '/organigrama'
     | '/organizacion'
+    | '/portal'
     | '/usuarios'
     | '/empleados/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/maestros'
     | '/organigrama'
     | '/organizacion'
+    | '/portal'
     | '/usuarios'
     | '/empleados/$id'
   id:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/maestros'
     | '/organigrama'
     | '/organizacion'
+    | '/portal'
     | '/usuarios'
     | '/empleados/$id'
   fileRoutesById: FileRoutesById
@@ -156,6 +168,7 @@ export interface RootRouteChildren {
   MaestrosRoute: typeof MaestrosRoute
   OrganigramaRoute: typeof OrganigramaRoute
   OrganizacionRoute: typeof OrganizacionRoute
+  PortalRoute: typeof PortalRoute
   UsuariosRoute: typeof UsuariosRoute
 }
 
@@ -217,6 +230,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OrganizacionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/portal': {
+      id: '/portal'
+      path: '/portal'
+      fullPath: '/portal'
+      preLoaderRoute: typeof PortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/usuarios': {
       id: '/usuarios'
       path: '/usuarios'
@@ -255,6 +275,7 @@ const rootRouteChildren: RootRouteChildren = {
   MaestrosRoute: MaestrosRoute,
   OrganigramaRoute: OrganigramaRoute,
   OrganizacionRoute: OrganizacionRoute,
+  PortalRoute: PortalRoute,
   UsuariosRoute: UsuariosRoute,
 }
 export const routeTree = rootRouteImport
