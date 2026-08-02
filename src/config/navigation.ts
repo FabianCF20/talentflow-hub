@@ -14,6 +14,8 @@ import {
   Building2,
   History,
   Network,
+  IdCard,
+  FolderOpen,
   type LucideIcon,
 } from "lucide-react";
 
@@ -36,7 +38,7 @@ export const NAV_GROUPS: NavGroup[] = [
     label: "General",
     items: [
       { label: "Dashboard", to: "/", icon: LayoutDashboard, modulo: "dashboard" },
-      { label: "Bandeja de solicitudes", icon: Inbox, modulo: "solicitudes", proximamente: true },
+      { label: "Bandeja de solicitudes", to: "/solicitudes", icon: Inbox, modulo: "solicitudes" },
     ],
   },
   {
@@ -50,7 +52,8 @@ export const NAV_GROUPS: NavGroup[] = [
     label: "Talento Humano",
     items: [
       { label: "Empleados", to: "/empleados", icon: Users, modulo: "empleados" },
-      { label: "Documentación", icon: FileText, modulo: "documentacion", proximamente: true },
+      { label: "Portal del Empleado", to: "/portal", icon: IdCard, modulo: "portal" },
+      { label: "Gestión documental", to: "/documentos", icon: FolderOpen, modulo: "documentacion" },
       { label: "Evaluaciones", icon: ClipboardCheck, modulo: "evaluaciones", proximamente: true },
       { label: "Gestión disciplinaria", icon: Scale, modulo: "disciplinario", proximamente: true },
     ],
