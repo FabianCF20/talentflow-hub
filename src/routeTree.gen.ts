@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuditoriaRouteImport } from './routes/auditoria'
 import { Route as ConfiguracionRouteImport } from './routes/configuracion'
+import { Route as DocumentosRouteImport } from './routes/documentos'
 import { Route as EmpleadosRouteImport } from './routes/empleados'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MaestrosRouteImport } from './routes/maestros'
@@ -34,6 +35,11 @@ const AuditoriaRoute = AuditoriaRouteImport.update({
 const ConfiguracionRoute = ConfiguracionRouteImport.update({
   id: '/configuracion',
   path: '/configuracion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentosRoute = DocumentosRouteImport.update({
+  id: '/documentos',
+  path: '/documentos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EmpleadosRoute = EmpleadosRouteImport.update({
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auditoria': typeof AuditoriaRoute
   '/configuracion': typeof ConfiguracionRoute
+  '/documentos': typeof DocumentosRoute
   '/empleados': typeof EmpleadosRouteWithChildren
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
@@ -94,6 +101,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auditoria': typeof AuditoriaRoute
   '/configuracion': typeof ConfiguracionRoute
+  '/documentos': typeof DocumentosRoute
   '/empleados': typeof EmpleadosRouteWithChildren
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
@@ -108,6 +116,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/auditoria': typeof AuditoriaRoute
   '/configuracion': typeof ConfiguracionRoute
+  '/documentos': typeof DocumentosRoute
   '/empleados': typeof EmpleadosRouteWithChildren
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
@@ -123,6 +132,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auditoria'
     | '/configuracion'
+    | '/documentos'
     | '/empleados'
     | '/login'
     | '/maestros'
@@ -136,6 +146,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auditoria'
     | '/configuracion'
+    | '/documentos'
     | '/empleados'
     | '/login'
     | '/maestros'
@@ -149,6 +160,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auditoria'
     | '/configuracion'
+    | '/documentos'
     | '/empleados'
     | '/login'
     | '/maestros'
@@ -163,6 +175,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuditoriaRoute: typeof AuditoriaRoute
   ConfiguracionRoute: typeof ConfiguracionRoute
+  DocumentosRoute: typeof DocumentosRoute
   EmpleadosRoute: typeof EmpleadosRouteWithChildren
   LoginRoute: typeof LoginRoute
   MaestrosRoute: typeof MaestrosRoute
@@ -193,6 +206,13 @@ declare module '@tanstack/react-router' {
       path: '/configuracion'
       fullPath: '/configuracion'
       preLoaderRoute: typeof ConfiguracionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documentos': {
+      id: '/documentos'
+      path: '/documentos'
+      fullPath: '/documentos'
+      preLoaderRoute: typeof DocumentosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/empleados': {
@@ -270,6 +290,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuditoriaRoute: AuditoriaRoute,
   ConfiguracionRoute: ConfiguracionRoute,
+  DocumentosRoute: DocumentosRoute,
   EmpleadosRoute: EmpleadosRouteWithChildren,
   LoginRoute: LoginRoute,
   MaestrosRoute: MaestrosRoute,
