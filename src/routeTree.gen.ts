@@ -16,6 +16,7 @@ import { Route as AusenciasRouteImport } from './routes/ausencias'
 import { Route as ConfiguracionRouteImport } from './routes/configuracion'
 import { Route as DocumentosRouteImport } from './routes/documentos'
 import { Route as EmpleadosRouteImport } from './routes/empleados'
+import { Route as HorasExtrasRouteImport } from './routes/horas-extras'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MaestrosRouteImport } from './routes/maestros'
 import { Route as OrganigramaRouteImport } from './routes/organigrama'
@@ -58,6 +59,11 @@ const DocumentosRoute = DocumentosRouteImport.update({
 const EmpleadosRoute = EmpleadosRouteImport.update({
   id: '/empleados',
   path: '/empleados',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HorasExtrasRoute = HorasExtrasRouteImport.update({
+  id: '/horas-extras',
+  path: '/horas-extras',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -109,6 +115,7 @@ export interface FileRoutesByFullPath {
   '/configuracion': typeof ConfiguracionRoute
   '/documentos': typeof DocumentosRoute
   '/empleados': typeof EmpleadosRouteWithChildren
+  '/horas-extras': typeof HorasExtrasRoute
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
   '/organigrama': typeof OrganigramaRoute
@@ -126,6 +133,7 @@ export interface FileRoutesByTo {
   '/configuracion': typeof ConfiguracionRoute
   '/documentos': typeof DocumentosRoute
   '/empleados': typeof EmpleadosRouteWithChildren
+  '/horas-extras': typeof HorasExtrasRoute
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
   '/organigrama': typeof OrganigramaRoute
@@ -144,6 +152,7 @@ export interface FileRoutesById {
   '/configuracion': typeof ConfiguracionRoute
   '/documentos': typeof DocumentosRoute
   '/empleados': typeof EmpleadosRouteWithChildren
+  '/horas-extras': typeof HorasExtrasRoute
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
   '/organigrama': typeof OrganigramaRoute
@@ -163,6 +172,7 @@ export interface FileRouteTypes {
     | '/configuracion'
     | '/documentos'
     | '/empleados'
+    | '/horas-extras'
     | '/login'
     | '/maestros'
     | '/organigrama'
@@ -180,6 +190,7 @@ export interface FileRouteTypes {
     | '/configuracion'
     | '/documentos'
     | '/empleados'
+    | '/horas-extras'
     | '/login'
     | '/maestros'
     | '/organigrama'
@@ -197,6 +208,7 @@ export interface FileRouteTypes {
     | '/configuracion'
     | '/documentos'
     | '/empleados'
+    | '/horas-extras'
     | '/login'
     | '/maestros'
     | '/organigrama'
@@ -215,6 +227,7 @@ export interface RootRouteChildren {
   ConfiguracionRoute: typeof ConfiguracionRoute
   DocumentosRoute: typeof DocumentosRoute
   EmpleadosRoute: typeof EmpleadosRouteWithChildren
+  HorasExtrasRoute: typeof HorasExtrasRoute
   LoginRoute: typeof LoginRoute
   MaestrosRoute: typeof MaestrosRoute
   OrganigramaRoute: typeof OrganigramaRoute
@@ -273,6 +286,13 @@ declare module '@tanstack/react-router' {
       path: '/empleados'
       fullPath: '/empleados'
       preLoaderRoute: typeof EmpleadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/horas-extras': {
+      id: '/horas-extras'
+      path: '/horas-extras'
+      fullPath: '/horas-extras'
+      preLoaderRoute: typeof HorasExtrasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -354,6 +374,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConfiguracionRoute: ConfiguracionRoute,
   DocumentosRoute: DocumentosRoute,
   EmpleadosRoute: EmpleadosRouteWithChildren,
+  HorasExtrasRoute: HorasExtrasRoute,
   LoginRoute: LoginRoute,
   MaestrosRoute: MaestrosRoute,
   OrganigramaRoute: OrganigramaRoute,
