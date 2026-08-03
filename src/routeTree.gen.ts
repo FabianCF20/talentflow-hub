@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AsistenciaRouteImport } from './routes/asistencia'
 import { Route as AuditoriaRouteImport } from './routes/auditoria'
 import { Route as AusenciasRouteImport } from './routes/ausencias'
 import { Route as ConfiguracionRouteImport } from './routes/configuracion'
@@ -27,6 +28,11 @@ import { Route as EmpleadosIdRouteImport } from './routes/empleados.$id'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AsistenciaRoute = AsistenciaRouteImport.update({
+  id: '/asistencia',
+  path: '/asistencia',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuditoriaRoute = AuditoriaRouteImport.update({
@@ -97,6 +103,7 @@ const EmpleadosIdRoute = EmpleadosIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/asistencia': typeof AsistenciaRoute
   '/auditoria': typeof AuditoriaRoute
   '/ausencias': typeof AusenciasRoute
   '/configuracion': typeof ConfiguracionRoute
@@ -113,6 +120,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/asistencia': typeof AsistenciaRoute
   '/auditoria': typeof AuditoriaRoute
   '/ausencias': typeof AusenciasRoute
   '/configuracion': typeof ConfiguracionRoute
@@ -130,6 +138,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/asistencia': typeof AsistenciaRoute
   '/auditoria': typeof AuditoriaRoute
   '/ausencias': typeof AusenciasRoute
   '/configuracion': typeof ConfiguracionRoute
@@ -148,6 +157,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/asistencia'
     | '/auditoria'
     | '/ausencias'
     | '/configuracion'
@@ -164,6 +174,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/asistencia'
     | '/auditoria'
     | '/ausencias'
     | '/configuracion'
@@ -180,6 +191,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/asistencia'
     | '/auditoria'
     | '/ausencias'
     | '/configuracion'
@@ -197,6 +209,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AsistenciaRoute: typeof AsistenciaRoute
   AuditoriaRoute: typeof AuditoriaRoute
   AusenciasRoute: typeof AusenciasRoute
   ConfiguracionRoute: typeof ConfiguracionRoute
@@ -218,6 +231,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/asistencia': {
+      id: '/asistencia'
+      path: '/asistencia'
+      fullPath: '/asistencia'
+      preLoaderRoute: typeof AsistenciaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auditoria': {
@@ -328,6 +348,7 @@ const EmpleadosRouteWithChildren = EmpleadosRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AsistenciaRoute: AsistenciaRoute,
   AuditoriaRoute: AuditoriaRoute,
   AusenciasRoute: AusenciasRoute,
   ConfiguracionRoute: ConfiguracionRoute,
