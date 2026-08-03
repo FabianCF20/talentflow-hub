@@ -8,6 +8,9 @@ import {
   HardHat,
   ClipboardCheck,
   Gauge,
+  CalendarClock,
+  Timer,
+  ListChecks,
   Scale,
   ShieldCheck,
   Settings,
@@ -61,9 +64,12 @@ export const NAV_GROUPS: NavGroup[] = [
   {
     label: "Operación",
     items: [
+      { label: "Solicitudes e incapacidades", to: "/ausencias", icon: CalendarClock, modulo: "ausencias" },
+      { label: "Control de asistencia", to: "/asistencia", icon: Gauge, modulo: "asistencia" },
+      { label: "Horas extras", to: "/horas-extras", icon: Timer, modulo: "horas_extras" },
+      { label: "Historial de novedades", to: "/novedades", icon: ListChecks, modulo: "novedades" },
       { label: "Nómina", icon: Wallet, modulo: "nomina", proximamente: true },
       { label: "SST", icon: HardHat, modulo: "sst", proximamente: true },
-      { label: "Control operativo", icon: Gauge, modulo: "control_operativo", proximamente: true },
       { label: "Proyectos y áreas", icon: FolderKanban, modulo: "areas", proximamente: true },
     ],
   },
