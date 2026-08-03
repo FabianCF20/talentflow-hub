@@ -15,6 +15,7 @@ import { ThemeProvider } from "../lib/theme";
 import { Toaster } from "../components/ui/sonner";
 import { RrhhProvider } from "../store/rrhh";
 import { PortalProvider } from "../store/portal";
+import { OperacionesProvider } from "../store/operaciones";
 
 
 function NotFoundComponent() {
@@ -140,8 +141,10 @@ function RootComponent() {
       <ThemeProvider>
         <RrhhProvider>
           <PortalProvider>
-          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-            <Outlet />
+            <OperacionesProvider>
+            {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+              <Outlet />
+            </OperacionesProvider>
           </PortalProvider>
         </RrhhProvider>
         <Toaster />
