@@ -7,7 +7,8 @@ import {
   SOLICITUDES_OP_INICIALES,
 } from "@/data/operaciones";
 import { calcularAsistencia, consecutivo, diasEntre, horaActual, hoyISO, supervisorDe } from "@/lib/operaciones";
-import { empleadoById, nombreCompleto } from "@/data/organizacion";
+import { empleadoById } from "@/data/organizacion";
+import { nombreCompleto } from "@/types/organizacion";
 import type {
   HoraExtra,
   IncapacidadOperativa,
