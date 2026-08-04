@@ -19,6 +19,8 @@ import {
   Network,
   IdCard,
   FolderOpen,
+  Shirt,
+  ClipboardList,
   type LucideIcon,
 } from "lucide-react";
 
@@ -57,6 +59,7 @@ export const NAV_GROUPS: NavGroup[] = [
       { label: "Empleados", to: "/empleados", icon: Users, modulo: "empleados" },
       { label: "Portal del Empleado", to: "/portal", icon: IdCard, modulo: "portal" },
       { label: "Gestión documental", to: "/documentos", icon: FolderOpen, modulo: "documentacion" },
+      { label: "Dotación", to: "/dotacion", icon: Shirt, modulo: "dotacion" },
       { label: "Evaluaciones", icon: ClipboardCheck, modulo: "evaluaciones", proximamente: true },
       { label: "Gestión disciplinaria", icon: Scale, modulo: "disciplinario", proximamente: true },
     ],
@@ -68,8 +71,8 @@ export const NAV_GROUPS: NavGroup[] = [
       { label: "Control de asistencia", to: "/asistencia", icon: Gauge, modulo: "asistencia" },
       { label: "Horas extras", to: "/horas-extras", icon: Timer, modulo: "horas_extras" },
       { label: "Historial de novedades", to: "/novedades", icon: ListChecks, modulo: "novedades" },
+      { label: "SST", to: "/sst", icon: HardHat, modulo: "sst" },
       { label: "Nómina", icon: Wallet, modulo: "nomina", proximamente: true },
-      { label: "SST", icon: HardHat, modulo: "sst", proximamente: true },
       { label: "Proyectos y áreas", icon: FolderKanban, modulo: "areas", proximamente: true },
     ],
   },
@@ -77,6 +80,7 @@ export const NAV_GROUPS: NavGroup[] = [
     label: "Administración",
     items: [
       { label: "Datos maestros", to: "/maestros", icon: Building2, modulo: "maestros" },
+      { label: "Formularios", to: "/formularios", icon: ClipboardList, modulo: "formularios" },
       { label: "Usuarios y roles", to: "/usuarios", icon: ShieldCheck, modulo: "usuarios" },
       { label: "Auditoría", to: "/auditoria", icon: History, modulo: "auditoria" },
       { label: "Configuración", to: "/configuracion", icon: Settings, modulo: "configuracion" },
