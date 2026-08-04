@@ -24,6 +24,7 @@ import { Route as OrganigramaRouteImport } from './routes/organigrama'
 import { Route as OrganizacionRouteImport } from './routes/organizacion'
 import { Route as PortalRouteImport } from './routes/portal'
 import { Route as SolicitudesRouteImport } from './routes/solicitudes'
+import { Route as SstRouteImport } from './routes/sst'
 import { Route as UsuariosRouteImport } from './routes/usuarios'
 import { Route as EmpleadosIdRouteImport } from './routes/empleados.$id'
 
@@ -102,6 +103,11 @@ const SolicitudesRoute = SolicitudesRouteImport.update({
   path: '/solicitudes',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SstRoute = SstRouteImport.update({
+  id: '/sst',
+  path: '/sst',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UsuariosRoute = UsuariosRouteImport.update({
   id: '/usuarios',
   path: '/usuarios',
@@ -129,6 +135,7 @@ export interface FileRoutesByFullPath {
   '/organizacion': typeof OrganizacionRoute
   '/portal': typeof PortalRoute
   '/solicitudes': typeof SolicitudesRoute
+  '/sst': typeof SstRoute
   '/usuarios': typeof UsuariosRoute
   '/empleados/$id': typeof EmpleadosIdRoute
 }
@@ -148,6 +155,7 @@ export interface FileRoutesByTo {
   '/organizacion': typeof OrganizacionRoute
   '/portal': typeof PortalRoute
   '/solicitudes': typeof SolicitudesRoute
+  '/sst': typeof SstRoute
   '/usuarios': typeof UsuariosRoute
   '/empleados/$id': typeof EmpleadosIdRoute
 }
@@ -168,6 +176,7 @@ export interface FileRoutesById {
   '/organizacion': typeof OrganizacionRoute
   '/portal': typeof PortalRoute
   '/solicitudes': typeof SolicitudesRoute
+  '/sst': typeof SstRoute
   '/usuarios': typeof UsuariosRoute
   '/empleados/$id': typeof EmpleadosIdRoute
 }
@@ -189,6 +198,7 @@ export interface FileRouteTypes {
     | '/organizacion'
     | '/portal'
     | '/solicitudes'
+    | '/sst'
     | '/usuarios'
     | '/empleados/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -208,6 +218,7 @@ export interface FileRouteTypes {
     | '/organizacion'
     | '/portal'
     | '/solicitudes'
+    | '/sst'
     | '/usuarios'
     | '/empleados/$id'
   id:
@@ -227,6 +238,7 @@ export interface FileRouteTypes {
     | '/organizacion'
     | '/portal'
     | '/solicitudes'
+    | '/sst'
     | '/usuarios'
     | '/empleados/$id'
   fileRoutesById: FileRoutesById
@@ -247,6 +259,7 @@ export interface RootRouteChildren {
   OrganizacionRoute: typeof OrganizacionRoute
   PortalRoute: typeof PortalRoute
   SolicitudesRoute: typeof SolicitudesRoute
+  SstRoute: typeof SstRoute
   UsuariosRoute: typeof UsuariosRoute
 }
 
@@ -357,6 +370,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SolicitudesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sst': {
+      id: '/sst'
+      path: '/sst'
+      fullPath: '/sst'
+      preLoaderRoute: typeof SstRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/usuarios': {
       id: '/usuarios'
       path: '/usuarios'
@@ -402,6 +422,7 @@ const rootRouteChildren: RootRouteChildren = {
   OrganizacionRoute: OrganizacionRoute,
   PortalRoute: PortalRoute,
   SolicitudesRoute: SolicitudesRoute,
+  SstRoute: SstRoute,
   UsuariosRoute: UsuariosRoute,
 }
 export const routeTree = rootRouteImport
