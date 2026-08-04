@@ -15,7 +15,9 @@ import { Route as AuditoriaRouteImport } from './routes/auditoria'
 import { Route as AusenciasRouteImport } from './routes/ausencias'
 import { Route as ConfiguracionRouteImport } from './routes/configuracion'
 import { Route as DocumentosRouteImport } from './routes/documentos'
+import { Route as DotacionRouteImport } from './routes/dotacion'
 import { Route as EmpleadosRouteImport } from './routes/empleados'
+import { Route as FormulariosRouteImport } from './routes/formularios'
 import { Route as HorasExtrasRouteImport } from './routes/horas-extras'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MaestrosRouteImport } from './routes/maestros'
@@ -58,9 +60,19 @@ const DocumentosRoute = DocumentosRouteImport.update({
   path: '/documentos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DotacionRoute = DotacionRouteImport.update({
+  id: '/dotacion',
+  path: '/dotacion',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EmpleadosRoute = EmpleadosRouteImport.update({
   id: '/empleados',
   path: '/empleados',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FormulariosRoute = FormulariosRouteImport.update({
+  id: '/formularios',
+  path: '/formularios',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HorasExtrasRoute = HorasExtrasRouteImport.update({
@@ -126,7 +138,9 @@ export interface FileRoutesByFullPath {
   '/ausencias': typeof AusenciasRoute
   '/configuracion': typeof ConfiguracionRoute
   '/documentos': typeof DocumentosRoute
+  '/dotacion': typeof DotacionRoute
   '/empleados': typeof EmpleadosRouteWithChildren
+  '/formularios': typeof FormulariosRoute
   '/horas-extras': typeof HorasExtrasRoute
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
@@ -146,7 +160,9 @@ export interface FileRoutesByTo {
   '/ausencias': typeof AusenciasRoute
   '/configuracion': typeof ConfiguracionRoute
   '/documentos': typeof DocumentosRoute
+  '/dotacion': typeof DotacionRoute
   '/empleados': typeof EmpleadosRouteWithChildren
+  '/formularios': typeof FormulariosRoute
   '/horas-extras': typeof HorasExtrasRoute
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
@@ -167,7 +183,9 @@ export interface FileRoutesById {
   '/ausencias': typeof AusenciasRoute
   '/configuracion': typeof ConfiguracionRoute
   '/documentos': typeof DocumentosRoute
+  '/dotacion': typeof DotacionRoute
   '/empleados': typeof EmpleadosRouteWithChildren
+  '/formularios': typeof FormulariosRoute
   '/horas-extras': typeof HorasExtrasRoute
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
@@ -189,7 +207,9 @@ export interface FileRouteTypes {
     | '/ausencias'
     | '/configuracion'
     | '/documentos'
+    | '/dotacion'
     | '/empleados'
+    | '/formularios'
     | '/horas-extras'
     | '/login'
     | '/maestros'
@@ -209,7 +229,9 @@ export interface FileRouteTypes {
     | '/ausencias'
     | '/configuracion'
     | '/documentos'
+    | '/dotacion'
     | '/empleados'
+    | '/formularios'
     | '/horas-extras'
     | '/login'
     | '/maestros'
@@ -229,7 +251,9 @@ export interface FileRouteTypes {
     | '/ausencias'
     | '/configuracion'
     | '/documentos'
+    | '/dotacion'
     | '/empleados'
+    | '/formularios'
     | '/horas-extras'
     | '/login'
     | '/maestros'
@@ -250,7 +274,9 @@ export interface RootRouteChildren {
   AusenciasRoute: typeof AusenciasRoute
   ConfiguracionRoute: typeof ConfiguracionRoute
   DocumentosRoute: typeof DocumentosRoute
+  DotacionRoute: typeof DotacionRoute
   EmpleadosRoute: typeof EmpleadosRouteWithChildren
+  FormulariosRoute: typeof FormulariosRoute
   HorasExtrasRoute: typeof HorasExtrasRoute
   LoginRoute: typeof LoginRoute
   MaestrosRoute: typeof MaestrosRoute
@@ -307,11 +333,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocumentosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dotacion': {
+      id: '/dotacion'
+      path: '/dotacion'
+      fullPath: '/dotacion'
+      preLoaderRoute: typeof DotacionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/empleados': {
       id: '/empleados'
       path: '/empleados'
       fullPath: '/empleados'
       preLoaderRoute: typeof EmpleadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/formularios': {
+      id: '/formularios'
+      path: '/formularios'
+      fullPath: '/formularios'
+      preLoaderRoute: typeof FormulariosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/horas-extras': {
@@ -413,7 +453,9 @@ const rootRouteChildren: RootRouteChildren = {
   AusenciasRoute: AusenciasRoute,
   ConfiguracionRoute: ConfiguracionRoute,
   DocumentosRoute: DocumentosRoute,
+  DotacionRoute: DotacionRoute,
   EmpleadosRoute: EmpleadosRouteWithChildren,
+  FormulariosRoute: FormulariosRoute,
   HorasExtrasRoute: HorasExtrasRoute,
   LoginRoute: LoginRoute,
   MaestrosRoute: MaestrosRoute,
