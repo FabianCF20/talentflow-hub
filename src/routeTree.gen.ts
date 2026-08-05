@@ -14,6 +14,7 @@ import { Route as AsistenciaRouteImport } from './routes/asistencia'
 import { Route as AuditoriaRouteImport } from './routes/auditoria'
 import { Route as AusenciasRouteImport } from './routes/ausencias'
 import { Route as ConfiguracionRouteImport } from './routes/configuracion'
+import { Route as DisciplinarioRouteImport } from './routes/disciplinario'
 import { Route as DocumentosRouteImport } from './routes/documentos'
 import { Route as DotacionRouteImport } from './routes/dotacion'
 import { Route as EmpleadosRouteImport } from './routes/empleados'
@@ -53,6 +54,11 @@ const AusenciasRoute = AusenciasRouteImport.update({
 const ConfiguracionRoute = ConfiguracionRouteImport.update({
   id: '/configuracion',
   path: '/configuracion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DisciplinarioRoute = DisciplinarioRouteImport.update({
+  id: '/disciplinario',
+  path: '/disciplinario',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DocumentosRoute = DocumentosRouteImport.update({
@@ -137,6 +143,7 @@ export interface FileRoutesByFullPath {
   '/auditoria': typeof AuditoriaRoute
   '/ausencias': typeof AusenciasRoute
   '/configuracion': typeof ConfiguracionRoute
+  '/disciplinario': typeof DisciplinarioRoute
   '/documentos': typeof DocumentosRoute
   '/dotacion': typeof DotacionRoute
   '/empleados': typeof EmpleadosRouteWithChildren
@@ -159,6 +166,7 @@ export interface FileRoutesByTo {
   '/auditoria': typeof AuditoriaRoute
   '/ausencias': typeof AusenciasRoute
   '/configuracion': typeof ConfiguracionRoute
+  '/disciplinario': typeof DisciplinarioRoute
   '/documentos': typeof DocumentosRoute
   '/dotacion': typeof DotacionRoute
   '/empleados': typeof EmpleadosRouteWithChildren
@@ -182,6 +190,7 @@ export interface FileRoutesById {
   '/auditoria': typeof AuditoriaRoute
   '/ausencias': typeof AusenciasRoute
   '/configuracion': typeof ConfiguracionRoute
+  '/disciplinario': typeof DisciplinarioRoute
   '/documentos': typeof DocumentosRoute
   '/dotacion': typeof DotacionRoute
   '/empleados': typeof EmpleadosRouteWithChildren
@@ -206,6 +215,7 @@ export interface FileRouteTypes {
     | '/auditoria'
     | '/ausencias'
     | '/configuracion'
+    | '/disciplinario'
     | '/documentos'
     | '/dotacion'
     | '/empleados'
@@ -228,6 +238,7 @@ export interface FileRouteTypes {
     | '/auditoria'
     | '/ausencias'
     | '/configuracion'
+    | '/disciplinario'
     | '/documentos'
     | '/dotacion'
     | '/empleados'
@@ -250,6 +261,7 @@ export interface FileRouteTypes {
     | '/auditoria'
     | '/ausencias'
     | '/configuracion'
+    | '/disciplinario'
     | '/documentos'
     | '/dotacion'
     | '/empleados'
@@ -273,6 +285,7 @@ export interface RootRouteChildren {
   AuditoriaRoute: typeof AuditoriaRoute
   AusenciasRoute: typeof AusenciasRoute
   ConfiguracionRoute: typeof ConfiguracionRoute
+  DisciplinarioRoute: typeof DisciplinarioRoute
   DocumentosRoute: typeof DocumentosRoute
   DotacionRoute: typeof DotacionRoute
   EmpleadosRoute: typeof EmpleadosRouteWithChildren
@@ -324,6 +337,13 @@ declare module '@tanstack/react-router' {
       path: '/configuracion'
       fullPath: '/configuracion'
       preLoaderRoute: typeof ConfiguracionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disciplinario': {
+      id: '/disciplinario'
+      path: '/disciplinario'
+      fullPath: '/disciplinario'
+      preLoaderRoute: typeof DisciplinarioRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/documentos': {
@@ -452,6 +472,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuditoriaRoute: AuditoriaRoute,
   AusenciasRoute: AusenciasRoute,
   ConfiguracionRoute: ConfiguracionRoute,
+  DisciplinarioRoute: DisciplinarioRoute,
   DocumentosRoute: DocumentosRoute,
   DotacionRoute: DotacionRoute,
   EmpleadosRoute: EmpleadosRouteWithChildren,
@@ -470,13 +491,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
