@@ -17,6 +17,7 @@ import { RrhhProvider } from "../store/rrhh";
 import { PortalProvider } from "../store/portal";
 import { OperacionesProvider } from "../store/operaciones";
 import { SstProvider } from "../store/sst";
+import { DisciplinarioProvider } from "../store/disciplinario";
 
 
 function NotFoundComponent() {
@@ -144,8 +145,10 @@ function RootComponent() {
           <PortalProvider>
             <OperacionesProvider>
               <SstProvider>
-              {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-                <Outlet />
+                <DisciplinarioProvider>
+                {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+                  <Outlet />
+                </DisciplinarioProvider>
               </SstProvider>
             </OperacionesProvider>
           </PortalProvider>

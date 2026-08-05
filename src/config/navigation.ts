@@ -60,8 +60,8 @@ export const NAV_GROUPS: NavGroup[] = [
       { label: "Portal del Empleado", to: "/portal", icon: IdCard, modulo: "portal" },
       { label: "Gestión documental", to: "/documentos", icon: FolderOpen, modulo: "documentacion" },
       { label: "Dotación", to: "/dotacion", icon: Shirt, modulo: "dotacion" },
-      { label: "Evaluaciones", icon: ClipboardCheck, modulo: "evaluaciones", proximamente: true },
-      { label: "Gestión disciplinaria", icon: Scale, modulo: "disciplinario", proximamente: true },
+      { label: "Evaluaciones", to: "/evaluaciones", icon: ClipboardCheck, modulo: "evaluaciones" },
+      { label: "Gestión disciplinaria", to: "/disciplinario", icon: Scale, modulo: "disciplinario" },
     ],
   },
   {
