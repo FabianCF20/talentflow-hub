@@ -14,9 +14,11 @@ import { Route as AsistenciaRouteImport } from './routes/asistencia'
 import { Route as AuditoriaRouteImport } from './routes/auditoria'
 import { Route as AusenciasRouteImport } from './routes/ausencias'
 import { Route as ConfiguracionRouteImport } from './routes/configuracion'
+import { Route as DisciplinarioRouteImport } from './routes/disciplinario'
 import { Route as DocumentosRouteImport } from './routes/documentos'
 import { Route as DotacionRouteImport } from './routes/dotacion'
 import { Route as EmpleadosRouteImport } from './routes/empleados'
+import { Route as EvaluacionesRouteImport } from './routes/evaluaciones'
 import { Route as FormulariosRouteImport } from './routes/formularios'
 import { Route as HorasExtrasRouteImport } from './routes/horas-extras'
 import { Route as LoginRouteImport } from './routes/login'
@@ -55,6 +57,11 @@ const ConfiguracionRoute = ConfiguracionRouteImport.update({
   path: '/configuracion',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DisciplinarioRoute = DisciplinarioRouteImport.update({
+  id: '/disciplinario',
+  path: '/disciplinario',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DocumentosRoute = DocumentosRouteImport.update({
   id: '/documentos',
   path: '/documentos',
@@ -68,6 +75,11 @@ const DotacionRoute = DotacionRouteImport.update({
 const EmpleadosRoute = EmpleadosRouteImport.update({
   id: '/empleados',
   path: '/empleados',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EvaluacionesRoute = EvaluacionesRouteImport.update({
+  id: '/evaluaciones',
+  path: '/evaluaciones',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FormulariosRoute = FormulariosRouteImport.update({
@@ -137,9 +149,11 @@ export interface FileRoutesByFullPath {
   '/auditoria': typeof AuditoriaRoute
   '/ausencias': typeof AusenciasRoute
   '/configuracion': typeof ConfiguracionRoute
+  '/disciplinario': typeof DisciplinarioRoute
   '/documentos': typeof DocumentosRoute
   '/dotacion': typeof DotacionRoute
   '/empleados': typeof EmpleadosRouteWithChildren
+  '/evaluaciones': typeof EvaluacionesRoute
   '/formularios': typeof FormulariosRoute
   '/horas-extras': typeof HorasExtrasRoute
   '/login': typeof LoginRoute
@@ -159,9 +173,11 @@ export interface FileRoutesByTo {
   '/auditoria': typeof AuditoriaRoute
   '/ausencias': typeof AusenciasRoute
   '/configuracion': typeof ConfiguracionRoute
+  '/disciplinario': typeof DisciplinarioRoute
   '/documentos': typeof DocumentosRoute
   '/dotacion': typeof DotacionRoute
   '/empleados': typeof EmpleadosRouteWithChildren
+  '/evaluaciones': typeof EvaluacionesRoute
   '/formularios': typeof FormulariosRoute
   '/horas-extras': typeof HorasExtrasRoute
   '/login': typeof LoginRoute
@@ -182,9 +198,11 @@ export interface FileRoutesById {
   '/auditoria': typeof AuditoriaRoute
   '/ausencias': typeof AusenciasRoute
   '/configuracion': typeof ConfiguracionRoute
+  '/disciplinario': typeof DisciplinarioRoute
   '/documentos': typeof DocumentosRoute
   '/dotacion': typeof DotacionRoute
   '/empleados': typeof EmpleadosRouteWithChildren
+  '/evaluaciones': typeof EvaluacionesRoute
   '/formularios': typeof FormulariosRoute
   '/horas-extras': typeof HorasExtrasRoute
   '/login': typeof LoginRoute
@@ -206,9 +224,11 @@ export interface FileRouteTypes {
     | '/auditoria'
     | '/ausencias'
     | '/configuracion'
+    | '/disciplinario'
     | '/documentos'
     | '/dotacion'
     | '/empleados'
+    | '/evaluaciones'
     | '/formularios'
     | '/horas-extras'
     | '/login'
@@ -228,9 +248,11 @@ export interface FileRouteTypes {
     | '/auditoria'
     | '/ausencias'
     | '/configuracion'
+    | '/disciplinario'
     | '/documentos'
     | '/dotacion'
     | '/empleados'
+    | '/evaluaciones'
     | '/formularios'
     | '/horas-extras'
     | '/login'
@@ -250,9 +272,11 @@ export interface FileRouteTypes {
     | '/auditoria'
     | '/ausencias'
     | '/configuracion'
+    | '/disciplinario'
     | '/documentos'
     | '/dotacion'
     | '/empleados'
+    | '/evaluaciones'
     | '/formularios'
     | '/horas-extras'
     | '/login'
@@ -273,9 +297,11 @@ export interface RootRouteChildren {
   AuditoriaRoute: typeof AuditoriaRoute
   AusenciasRoute: typeof AusenciasRoute
   ConfiguracionRoute: typeof ConfiguracionRoute
+  DisciplinarioRoute: typeof DisciplinarioRoute
   DocumentosRoute: typeof DocumentosRoute
   DotacionRoute: typeof DotacionRoute
   EmpleadosRoute: typeof EmpleadosRouteWithChildren
+  EvaluacionesRoute: typeof EvaluacionesRoute
   FormulariosRoute: typeof FormulariosRoute
   HorasExtrasRoute: typeof HorasExtrasRoute
   LoginRoute: typeof LoginRoute
@@ -326,6 +352,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConfiguracionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/disciplinario': {
+      id: '/disciplinario'
+      path: '/disciplinario'
+      fullPath: '/disciplinario'
+      preLoaderRoute: typeof DisciplinarioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/documentos': {
       id: '/documentos'
       path: '/documentos'
@@ -345,6 +378,13 @@ declare module '@tanstack/react-router' {
       path: '/empleados'
       fullPath: '/empleados'
       preLoaderRoute: typeof EmpleadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/evaluaciones': {
+      id: '/evaluaciones'
+      path: '/evaluaciones'
+      fullPath: '/evaluaciones'
+      preLoaderRoute: typeof EvaluacionesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/formularios': {
@@ -452,9 +492,11 @@ const rootRouteChildren: RootRouteChildren = {
   AuditoriaRoute: AuditoriaRoute,
   AusenciasRoute: AusenciasRoute,
   ConfiguracionRoute: ConfiguracionRoute,
+  DisciplinarioRoute: DisciplinarioRoute,
   DocumentosRoute: DocumentosRoute,
   DotacionRoute: DotacionRoute,
   EmpleadosRoute: EmpleadosRouteWithChildren,
+  EvaluacionesRoute: EvaluacionesRoute,
   FormulariosRoute: FormulariosRoute,
   HorasExtrasRoute: HorasExtrasRoute,
   LoginRoute: LoginRoute,
