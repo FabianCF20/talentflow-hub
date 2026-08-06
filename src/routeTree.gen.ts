@@ -23,10 +23,12 @@ import { Route as FormulariosRouteImport } from './routes/formularios'
 import { Route as HorasExtrasRouteImport } from './routes/horas-extras'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MaestrosRouteImport } from './routes/maestros'
+import { Route as NominaRouteImport } from './routes/nomina'
 import { Route as NovedadesRouteImport } from './routes/novedades'
 import { Route as OrganigramaRouteImport } from './routes/organigrama'
 import { Route as OrganizacionRouteImport } from './routes/organizacion'
 import { Route as PortalRouteImport } from './routes/portal'
+import { Route as ReportesRouteImport } from './routes/reportes'
 import { Route as SolicitudesRouteImport } from './routes/solicitudes'
 import { Route as SstRouteImport } from './routes/sst'
 import { Route as UsuariosRouteImport } from './routes/usuarios'
@@ -102,6 +104,11 @@ const MaestrosRoute = MaestrosRouteImport.update({
   path: '/maestros',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NominaRoute = NominaRouteImport.update({
+  id: '/nomina',
+  path: '/nomina',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NovedadesRoute = NovedadesRouteImport.update({
   id: '/novedades',
   path: '/novedades',
@@ -120,6 +127,11 @@ const OrganizacionRoute = OrganizacionRouteImport.update({
 const PortalRoute = PortalRouteImport.update({
   id: '/portal',
   path: '/portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportesRoute = ReportesRouteImport.update({
+  id: '/reportes',
+  path: '/reportes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SolicitudesRoute = SolicitudesRouteImport.update({
@@ -158,10 +170,12 @@ export interface FileRoutesByFullPath {
   '/horas-extras': typeof HorasExtrasRoute
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
+  '/nomina': typeof NominaRoute
   '/novedades': typeof NovedadesRoute
   '/organigrama': typeof OrganigramaRoute
   '/organizacion': typeof OrganizacionRoute
   '/portal': typeof PortalRoute
+  '/reportes': typeof ReportesRoute
   '/solicitudes': typeof SolicitudesRoute
   '/sst': typeof SstRoute
   '/usuarios': typeof UsuariosRoute
@@ -182,10 +196,12 @@ export interface FileRoutesByTo {
   '/horas-extras': typeof HorasExtrasRoute
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
+  '/nomina': typeof NominaRoute
   '/novedades': typeof NovedadesRoute
   '/organigrama': typeof OrganigramaRoute
   '/organizacion': typeof OrganizacionRoute
   '/portal': typeof PortalRoute
+  '/reportes': typeof ReportesRoute
   '/solicitudes': typeof SolicitudesRoute
   '/sst': typeof SstRoute
   '/usuarios': typeof UsuariosRoute
@@ -207,10 +223,12 @@ export interface FileRoutesById {
   '/horas-extras': typeof HorasExtrasRoute
   '/login': typeof LoginRoute
   '/maestros': typeof MaestrosRoute
+  '/nomina': typeof NominaRoute
   '/novedades': typeof NovedadesRoute
   '/organigrama': typeof OrganigramaRoute
   '/organizacion': typeof OrganizacionRoute
   '/portal': typeof PortalRoute
+  '/reportes': typeof ReportesRoute
   '/solicitudes': typeof SolicitudesRoute
   '/sst': typeof SstRoute
   '/usuarios': typeof UsuariosRoute
@@ -233,10 +251,12 @@ export interface FileRouteTypes {
     | '/horas-extras'
     | '/login'
     | '/maestros'
+    | '/nomina'
     | '/novedades'
     | '/organigrama'
     | '/organizacion'
     | '/portal'
+    | '/reportes'
     | '/solicitudes'
     | '/sst'
     | '/usuarios'
@@ -257,10 +277,12 @@ export interface FileRouteTypes {
     | '/horas-extras'
     | '/login'
     | '/maestros'
+    | '/nomina'
     | '/novedades'
     | '/organigrama'
     | '/organizacion'
     | '/portal'
+    | '/reportes'
     | '/solicitudes'
     | '/sst'
     | '/usuarios'
@@ -281,10 +303,12 @@ export interface FileRouteTypes {
     | '/horas-extras'
     | '/login'
     | '/maestros'
+    | '/nomina'
     | '/novedades'
     | '/organigrama'
     | '/organizacion'
     | '/portal'
+    | '/reportes'
     | '/solicitudes'
     | '/sst'
     | '/usuarios'
@@ -306,10 +330,12 @@ export interface RootRouteChildren {
   HorasExtrasRoute: typeof HorasExtrasRoute
   LoginRoute: typeof LoginRoute
   MaestrosRoute: typeof MaestrosRoute
+  NominaRoute: typeof NominaRoute
   NovedadesRoute: typeof NovedadesRoute
   OrganigramaRoute: typeof OrganigramaRoute
   OrganizacionRoute: typeof OrganizacionRoute
   PortalRoute: typeof PortalRoute
+  ReportesRoute: typeof ReportesRoute
   SolicitudesRoute: typeof SolicitudesRoute
   SstRoute: typeof SstRoute
   UsuariosRoute: typeof UsuariosRoute
@@ -415,6 +441,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MaestrosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/nomina': {
+      id: '/nomina'
+      path: '/nomina'
+      fullPath: '/nomina'
+      preLoaderRoute: typeof NominaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/novedades': {
       id: '/novedades'
       path: '/novedades'
@@ -441,6 +474,13 @@ declare module '@tanstack/react-router' {
       path: '/portal'
       fullPath: '/portal'
       preLoaderRoute: typeof PortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reportes': {
+      id: '/reportes'
+      path: '/reportes'
+      fullPath: '/reportes'
+      preLoaderRoute: typeof ReportesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/solicitudes': {
@@ -501,10 +541,12 @@ const rootRouteChildren: RootRouteChildren = {
   HorasExtrasRoute: HorasExtrasRoute,
   LoginRoute: LoginRoute,
   MaestrosRoute: MaestrosRoute,
+  NominaRoute: NominaRoute,
   NovedadesRoute: NovedadesRoute,
   OrganigramaRoute: OrganigramaRoute,
   OrganizacionRoute: OrganizacionRoute,
   PortalRoute: PortalRoute,
+  ReportesRoute: ReportesRoute,
   SolicitudesRoute: SolicitudesRoute,
   SstRoute: SstRoute,
   UsuariosRoute: UsuariosRoute,
