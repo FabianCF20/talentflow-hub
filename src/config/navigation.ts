@@ -21,6 +21,7 @@ import {
   FolderOpen,
   Shirt,
   ClipboardList,
+  BarChart3,
   type LucideIcon,
 } from "lucide-react";
 
@@ -72,13 +73,14 @@ export const NAV_GROUPS: NavGroup[] = [
       { label: "Horas extras", to: "/horas-extras", icon: Timer, modulo: "horas_extras" },
       { label: "Historial de novedades", to: "/novedades", icon: ListChecks, modulo: "novedades" },
       { label: "SST", to: "/sst", icon: HardHat, modulo: "sst" },
-      { label: "Nómina", icon: Wallet, modulo: "nomina", proximamente: true },
+      { label: "Nómina", to: "/nomina", icon: Wallet, modulo: "nomina" },
       { label: "Proyectos y áreas", icon: FolderKanban, modulo: "areas", proximamente: true },
     ],
   },
   {
     label: "Administración",
     items: [
+      { label: "Reportes y dashboards", to: "/reportes", icon: BarChart3, modulo: "reportes" },
       { label: "Datos maestros", to: "/maestros", icon: Building2, modulo: "maestros" },
       { label: "Formularios", to: "/formularios", icon: ClipboardList, modulo: "formularios" },
       { label: "Usuarios y roles", to: "/usuarios", icon: ShieldCheck, modulo: "usuarios" },
